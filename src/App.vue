@@ -1,20 +1,25 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <NewCoinModal />
+  <CoinList msg="This is the coinlist" />
 </template>
 
-<script>
-import HelloWorld from "./components/HelloWorld.vue";
+<script lang="ts">
+import { defineComponent } from "vue";
+import CoinList from "./components/CoinList.vue";
+import NewCoinModal from "./components/NewCoinModal.vue";
 
-export default {
+export default defineComponent({
   name: "App",
   components: {
-    HelloWorld,
+    CoinList,
+    NewCoinModal,
   },
-};
+  setup() {},
+});
 </script>
 
-<style>
+<style lang="css">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
