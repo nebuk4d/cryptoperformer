@@ -1,14 +1,12 @@
 <template>
   <div class="newcoinmodal">
-    <form @submit.prevent="addNewCryptoCoin">
-      <label>Coin Name</label>
-      <input v-model="coinName" name="coinName" type="text" />
-      <label>Coin Symbol</label>
-      <input v-model="coinSymbol" name="coinSymbol" type="text" />
-      <label>Coin Amount</label>
-      <input v-model="coinAmount" name="coinAmount" type="number" />
-      <button>Add New Crypto Coin</button>
-    </form>
+    <label>Coin Name</label>
+    <InputText v-model="coinName" name="coinName" type="text" />
+    <label>Coin Symbol</label>
+    <InputText v-model="coinSymbol" name="coinSymbol" type="text" />
+    <label>Coin Amount</label>
+    <InputText v-model="coinAmount" name="coinAmount" type="number" />
+    <Button icon="pi pi-check" iconPos="right" class="p-button" label="Add New Crypto Coin" @click="addNewCryptoCoin" />
   </div>
 </template>
 
@@ -50,4 +48,5 @@ export default defineComponent({
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style lang="css" scoped>
+</style>

@@ -21,7 +21,7 @@ const mutations = {
     console.log("add crypto to store");
     console.log(cryptoCoin.name);
     state.cryptoCoins.push(cryptoCoin);
-    // localStorage.setItem("cryptoCoins", JSON.stringify(state));
+    localStorage.setItem("cryptoCoins", JSON.stringify(state));
   },
 };
 

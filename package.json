@@ -8,9 +8,9 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "bulma": "^0.9.2",
     "core-js": "^3.6.5",
-    "sass-loader": "^11.1.1",
+    "primeicons": "^4.1.0",
+    "primevue": "^3.3.5",
     "vue": "^3.0.0",
     "vuex": "^4.0.0"
   },
