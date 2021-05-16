@@ -8,12 +8,14 @@
     <InputText v-model="coinAmount" name="coinAmount" type="number" />
     <Button icon="pi pi-check" iconPos="right" class="p-button" label="Add New Crypto Coin" @click="addNewCryptoCoin" />
   </div>
+  <Button icon="pi pi-search" iconPos="right" class="p-button" label="Get Crypto Currencies" @click="getCryptoCurrencies" />
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { useStore } from "vuex";
 import { CryptoCoin } from "../store/index";
+import CurrencyService from "../services/CurrencyService"
 
 export default defineComponent({
   name: "NewCoinModal",
@@ -37,11 +39,17 @@ export default defineComponent({
       store.commit("addCryptoCoin", cryptoCoin);
     }
 
+    function getCryptoCurrencies() {
+      const cryptoCurrencies = CurrencyService.getCurrencyInformation();
+      console.log(cryptoCurrencies);
+    }
+
     return {
       coinName,
       coinSymbol,
       coinAmount,
       addNewCryptoCoin,
+      getCryptoCurrencies,
     };
   },
 });
