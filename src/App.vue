@@ -9,9 +9,9 @@ import { defineComponent } from "vue";
 import CoinList from "./components/CoinList.vue";
 import NewCoinModal from "./components/NewCoinModal.vue";
 
-import "primevue/resources/themes/vela-blue/theme.css"       //theme
-import "primevue/resources/primevue.min.css"                 //core css
-import "primeicons/primeicons.css"                           //icons
+import "primevue/resources/themes/vela-blue/theme.css"; //theme
+import "primevue/resources/primevue.min.css"; //core css
+import "primeicons/primeicons.css"; //icons
 
 export default defineComponent({
   name: "App",

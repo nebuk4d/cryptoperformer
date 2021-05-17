@@ -6,16 +6,28 @@
     <InputText v-model="coinSymbol" name="coinSymbol" type="text" />
     <label>Coin Amount</label>
     <InputText v-model="coinAmount" name="coinAmount" type="number" />
-    <Button icon="pi pi-check" iconPos="right" class="p-button" label="Add New Crypto Coin" @click="addNewCryptoCoin" />
+    <Button
+      icon="pi pi-check"
+      iconPos="right"
+      class="p-button"
+      label="Add New Crypto Coin"
+      @click="addNewCryptoCoin"
+    />
   </div>
-  <Button icon="pi pi-search" iconPos="right" class="p-button" label="Get Crypto Currencies" @click="getCryptoCurrencies" />
+  <Button
+    icon="pi pi-search"
+    iconPos="right"
+    class="p-button"
+    label="Get Crypto Currencies"
+    @click="getCryptoCurrencies"
+  />
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { useStore } from "vuex";
 import { CryptoCoin } from "../store/index";
-import CurrencyService from "../services/CurrencyService"
+import CurrencyService from "../services/CurrencyService";
 
 export default defineComponent({
   name: "NewCoinModal",
@@ -56,5 +68,4 @@ export default defineComponent({
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="css" scoped>
-</style>
+<style lang="css" scoped></style>
