@@ -2,7 +2,7 @@ import axios from "axios";
 import { AxiosResponse } from "axios";
 import { CurrencyInformation } from "./CurrencyInformation";
 
-// const API_KEY: string = process.env.CUR_API_KEY=; //currently reading key from env
+const API_KEY: string = process.env.CUR_API_KEY; //currently reading key from env
 
 export default class CurrencyService {
   static getCurrencyInformation(): Promise<CurrencyInformation[]> {
