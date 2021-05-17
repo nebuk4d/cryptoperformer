@@ -1,4 +1,5 @@
 import { createStore } from "vuex";
+import { CurrencyInformation } from "../services/CurrencyInformation";
 
 export type CryptoCoin = {
   id: number;
@@ -10,18 +11,26 @@ export type CryptoCoin = {
 
 export type State = {
   cryptoCoins: CryptoCoin[];
+  currencyInformation: CurrencyInformation[];
 };
 
 const state: State = {
   cryptoCoins: [],
+  currencyInformation: [],
 };
 
 const mutations = {
   addCryptoCoin(state: State, cryptoCoin: CryptoCoin) {
     console.log("add crypto to store");
-    console.log(cryptoCoin.name);
     state.cryptoCoins.push(cryptoCoin);
-    localStorage.setItem("cryptoCoins", JSON.stringify(state));
+    // localStorage.setItem("cryptoCoins", JSON.stringify(state));
+  },
+  addCurrencyInformation(
+    state: State,
+    currencyInformation: CurrencyInformation[]
+  ) {
+    console.log("add currency info");
+    state.currencyInformation.push(...currencyInformation);
   },
 };
 

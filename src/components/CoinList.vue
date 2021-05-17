@@ -2,7 +2,7 @@
   <div class="coinlist">
     <ul>
       <li v-for="coin in coins" :key="coin.id" class="coin">
-        <h3>{{ coin.name }}</h3>
+        <h3>{{ coin.currency }}</h3>
       </li>
     </ul>
   </div>
@@ -19,7 +19,8 @@ export default defineComponent({
   },
   setup() {
     const store = useStore();
-    const coins = computed(() => store.state.cryptoCoins);
+    //const coins = computed(() => store.state.cryptoCoins);
+    const coins = computed(() => store.state.currencyInformation);
 
     return {
       coins,

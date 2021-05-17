@@ -19,7 +19,7 @@
     iconPos="right"
     class="p-button"
     label="Get Crypto Currencies"
-    @click="getCryptoCurrencies"
+    @click="getCurrencyInformation"
   />
 </template>
 
@@ -51,9 +51,10 @@ export default defineComponent({
       store.commit("addCryptoCoin", cryptoCoin);
     }
 
-    function getCryptoCurrencies() {
-      const cryptoCurrencies = CurrencyService.getCurrencyInformation();
-      console.log(cryptoCurrencies);
+    function getCurrencyInformation() {
+      CurrencyService.getCurrencyInformation().then((currencyInformation) => {
+        store.commit("setCurrencyInformation", currencyInformation);
+      });
     }
 
     return {
@@ -61,7 +62,7 @@ export default defineComponent({
       coinSymbol,
       coinAmount,
       addNewCryptoCoin,
-      getCryptoCurrencies,
+      getCurrencyInformation,
     };
   },
 });
