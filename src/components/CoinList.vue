@@ -1,10 +1,18 @@
 <template>
   <div class="coinlist">
-    <ul>
-      <li v-for="coin in coins" :key="coin.id" class="coin">
-        <h3>{{ coin.currency }}</h3>
-      </li>
-    </ul>
+    <table>
+      <tr v-for="coin in coins" :key="coin.id" class="coin">
+        <td>
+          <img :src="coin.logo_url" :alt="coin.name" width="50" height="50" />
+        </td>
+        <td>
+          <p>{{ coin.currency }}</p>
+        </td>
+        <td>
+          <p>{{ coin.price }}</p>
+        </td>
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -30,4 +38,13 @@ export default defineComponent({
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+.coinlist {
+  display: table;
+}
+.coin {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+</style>

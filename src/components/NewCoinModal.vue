@@ -19,7 +19,7 @@
     iconPos="right"
     class="p-button"
     label="Get Crypto Currencies"
-    @click="getCurrencyInformation"
+    @click="updateCurrencyInformation"
   />
 </template>
 
@@ -27,7 +27,7 @@
 import { defineComponent, ref } from "vue";
 import { useStore } from "vuex";
 import { CryptoCoin } from "../store/index";
-import CurrencyService from "../services/CurrencyService";
+import { getCurrencyInformation } from "../services/CurrencyService";
 
 export default defineComponent({
   name: "NewCoinModal",
@@ -51,10 +51,16 @@ export default defineComponent({
       store.commit("addCryptoCoin", cryptoCoin);
     }
 
-    function getCurrencyInformation() {
-      CurrencyService.getCurrencyInformation().then((currencyInformation) => {
-        store.commit("setCurrencyInformation", currencyInformation);
-      });
+    function updateCurrencyInformation() {
+      console.log("updateCurrencyInfo button was pressed");
+      getCurrencyInformation()
+        .then((currencyInformation) => {
+          console.log(currencyInformation);
+          store.commit("addCurrencyInformation", currencyInformation);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
 
     return {
@@ -62,7 +68,7 @@ export default defineComponent({
       coinSymbol,
       coinAmount,
       addNewCryptoCoin,
-      getCurrencyInformation,
+      updateCurrencyInformation,
     };
   },
 });
