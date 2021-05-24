@@ -27,7 +27,7 @@ export function getMarketCapHistory(
   return new Promise((resolve, reject) => {
     axios
       .get(
-        `curl "https://api.nomics.com/v1/market-cap/history?key=${API_KEY}&start=${start.toISOString()}&end=${end.toISOString()}"`
+        `https://api.nomics.com/v1/market-cap/history?key=${API_KEY}&start=${start.toISOString()}&end=${end.toISOString()}`
       )
       .then((response) => {
         resolve(response.data);
