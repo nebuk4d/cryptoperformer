@@ -1,30 +1,32 @@
 <template>
   <div class="card p-p-auto p-m-6">
-    <Chart type="line" :data="basicData" height="50"></Chart>
+    <Chart type="line" :data="chartData" height="50"></Chart>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import { MarketCapHistory } from "../services/MarketCapHistory";
+import { defineComponent, ref, computed } from "vue";
 import { getMarketCapHistory } from "../services/CurrencyService";
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "MarketCapGraph",
-  mounted() {},
-  setup() {
-    var marketCapHistory: MarketCapHistory[] = [];
-
+  mounted() {
+    const store = useStore();
     getMarketCapHistory(new Date(2021, 4, 24), new Date())
       .then((currencyInformation) => {
         console.log(currencyInformation);
-        marketCapHistory = currencyInformation;
+        store.commit("addCurrencyInformation", currencyInformation);
       })
       .catch((error) => {
         console.log(error);
       });
+  },
+  setup() {
+    const store = useStore();
+    const market_cap = computed(() => store.state.currencyInformation);
 
-    const basicData = ref({
+    const chartData = ref({
       labels: ["January", "February", "March", "April", "May", "June", "July"],
       datasets: [
         {
@@ -37,8 +39,8 @@ export default defineComponent({
     });
 
     return {
-      marketCapHistory,
-      basicData,
+      chartData,
+      market_cap,
     };
   },
 });
