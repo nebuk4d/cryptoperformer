@@ -1,6 +1,7 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import store from "./store";
+import router from "./router";
 import PrimeVue from "primevue/config";
 import InputText from "primevue/inputtext";
 import Button from "primevue/button";
@@ -11,6 +12,7 @@ import Chart from "primevue/chart";
 
 const app = createApp(App);
 app.use(store);
+app.use(router);
 app.use(PrimeVue);
 app.component("InputText", InputText);
 app.component("Column", Column);

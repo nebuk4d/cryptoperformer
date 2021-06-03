@@ -1,15 +1,11 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <NewCoinModal />
-  <MarketCapGraph></MarketCapGraph>
-  <CoinList msg="This is the coinlist" />
+  <Header></Header>
+  <router-view />
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import CoinList from "./components/CoinList.vue";
-import NewCoinModal from "./components/NewCoinModal.vue";
-import MarketCapGraph from "./components/MarketCapGraph.vue";
+import Header from "./components/Header.vue";
 
 import "primevue/resources/themes/vela-blue/theme.css"; //theme
 import "primevue/resources/primevue.min.css"; //core css
@@ -18,11 +14,7 @@ import "primeflex/primeflex.css"; //primeflex
 
 export default defineComponent({
   name: "App",
-  components: {
-    CoinList,
-    NewCoinModal,
-    MarketCapGraph,
-  },
+  components: { Header },
   setup() {},
 });
 </script>

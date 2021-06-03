@@ -35,10 +35,7 @@ const mutations = {
     console.log("add currency info");
     state.currencyInformation.push(...currencyInformation);
   },
-  addMarketCapHistory(
-    state: State,
-    marketCapHistory: MarketCapHistory[]
-  ) {
+  addMarketCapHistory(state: State, marketCapHistory: MarketCapHistory[]) {
     console.log("add marketcap history");
     state.marketCapHistory.push(...marketCapHistory);
   },
