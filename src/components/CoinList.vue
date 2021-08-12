@@ -29,7 +29,7 @@
 <script lang="ts">
 import { defineComponent, computed } from "vue";
 import { useStore } from "vuex";
-import { getCurrencyInformation } from "../services/CurrencyService";
+import * as CurrencyService from "../services/CurrencyService";
 
 export default defineComponent({
   name: "CoinList",
@@ -38,7 +38,7 @@ export default defineComponent({
   },
   mounted() {
     const store = useStore();
-    getCurrencyInformation()
+    CurrencyService.getCurrencyInformation()
       .then((currencyInformation) => {
         console.log(currencyInformation);
         store.commit("addCurrencyInformation", currencyInformation);

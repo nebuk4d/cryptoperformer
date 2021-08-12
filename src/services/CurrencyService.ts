@@ -24,18 +24,13 @@ export function getMarketCapHistory(
   start: Date,
   end: Date
 ): Promise<MarketCapHistory[]> {
-  return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `https://api.nomics.com/v1/market-cap/history?key=${API_KEY}&start=${start.toISOString()}&end=${end.toISOString()}`
-      )
-      .then((response) => {
-        resolve(response.data);
-      })
-      .catch((err) => {
-        reject(err);
-      });
-  });
+  return axios
+    .get(
+      `https://api.nomics.com/v1/market-cap/history?key=${API_KEY}&start=${start.toISOString()}&end=${end.toISOString()}`
+    )
+    .then((response) => {
+      return response.data;
+    });
 }
 
 export function getCurrencyPriceHistory(
