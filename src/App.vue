@@ -19,9 +19,12 @@ export default defineComponent({
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
 :root {
   background-color: rgb(62, 80, 104);
   color: white;
+  font-family: "Roboto", sans-serif;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
