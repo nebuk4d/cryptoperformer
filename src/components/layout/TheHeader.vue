@@ -1,7 +1,11 @@
 <template>
   <header>
     <nav>
+      <!-- <h1><router-link to="/">CryptoPerformer</router-link></h1> -->
       <ul>
+        <li>
+          <img alt="Vue logo" src="../../assets/logo.png" />
+        </li>
         <li>
           <router-link to="/coin-info">CoinInfo</router-link>
         </li>
@@ -17,7 +21,7 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "Header",
+  name: "TheHeader",
   setup() {},
 });
 </script>
@@ -26,11 +30,21 @@ export default defineComponent({
 header {
   width: 100%;
   height: 5rem;
-  background-color: inherit;
+  background-color: rgb(44, 44, 83);
+  border: 5px solid rgb(37, 50, 61);
 }
 
 nav {
   height: 100%;
+}
+
+h1 {
+  margin: 0;
+}
+
+h1 a {
+  color: white;
+  margin: 0;
 }
 
 ul {
@@ -63,5 +77,10 @@ a.active {
   color: #f1a80a;
   border-color: #f1a80a;
   background-color: #1a037e;
+}
+
+img {
+  max-width: 30%;
+  max-height: 30%;
 }
 </style>

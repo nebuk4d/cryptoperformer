@@ -1,6 +1,6 @@
 <template>
   <div class="card p-p-auto p-m-6">
-    <Chart type="line" :data="chartData" height="50"></Chart>
+    <Chart type="line" :data="chartData" :height="50"></Chart>
   </div>
 </template>
 

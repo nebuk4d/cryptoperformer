@@ -1,13 +1,14 @@
 <template>
-  <img alt="Vue logo" src="../assets/logo.png" />
-  <!-- <market-cap-graph></market-cap-graph> -->
-  <coin-list></coin-list>
+  <div>
+    <!-- <market-cap-graph></market-cap-graph> -->
+    <coin-list></coin-list>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import CoinList from "../components/currencyInfo/CoinList.vue";
-// import MarketCapGraph from "../components/MarketCapGraph.vue";
+// import MarketCapGraph from "../components/currencyInfo/MarketCapGraph.vue";
 
 export default defineComponent({
   name: "CoinInfo",
