@@ -1,29 +1,24 @@
 <template>
-  <div class="coinlist p-p-auto p-m-6">
-    <DataTable :value="currencies">
-      <template #empty>
-        <ProgressSpinner />
-      </template>
-      <Column sortable header="Rank" field="rank"></Column>
-      <Column header="Logo" field="logo_url">
-        <template #body="{ data }">
-          <img :src="data.logo_url" width="30" height="30" />
-        </template>
-      </Column>
-      <Column sortable header="Name" field="name"></Column>
-      <Column header="Symbol" field="symbol" style="min-width: 14rem"></Column>
-      <Column sortable header="Marketcap" dataType="numeric">
-        <template #body="{ data }">
-          {{ formatCurrency.format(data.market_cap) }}
-        </template>
-      </Column>
-      <Column sortable header="Price" field="price" dataType="numeric">
-        <template #body="{ data }">
-          {{ formatCurrency.format(data.price) }}
-        </template></Column
-      >
-    </DataTable>
-  </div>
+  <table class="coinlist">
+    <thead>
+      <th>Rank</th>
+      <th>Logo</th>
+      <th>Name</th>
+      <th>Symbol</th>
+      <th>Marketcap</th>
+      <th>Price</th>
+    </thead>
+    <tbody>
+      <tr v-for="currency in currencies" :key="currency.id">
+        <td>{{ currency.rank }}</td>
+        <td><img :src="currency.logo_url" width="30" height="30" /></td>
+        <td>{{ currency.name }}</td>
+        <td>{{ currency.symbol }}</td>
+        <td>{{ formatCurrency.format(currency.market_cap) }}</td>
+        <td>{{ formatCurrency.format(currency.price) }}</td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
 <script lang="ts">
@@ -73,9 +68,6 @@ export default defineComponent({
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .coinlist {
-  display: table;
-}
-.currencies {
   display: table;
   table-layout: fixed;
   width: 100%;
