@@ -1,47 +1,31 @@
 import { createStore } from "vuex";
-import { CurrencyInformation } from "../services/CurrencyInformation";
-import { MarketCapHistory } from "../services/MarketCapHistory";
+import { CurrencyInformation } from "../types/CurrencyInformation";
+import { MarketCapHistory } from "../types/MarketCapHistory";
+import { CoinHolding } from "../types/CoinHolding";
 
-export type CryptoCoin = {
-  id: number;
-  name: string;
-  symbol: string;
-  amount: number;
-  value?: number;
-};
+import currencyInfoModule from "./currencyInfo/index";
+import holdingsModule from "./holdings/index";
 
 export type State = {
-  cryptoCoins: CryptoCoin[];
+  coinHolding: CoinHolding[];
   currencyInformation: CurrencyInformation[];
   marketCapHistory: MarketCapHistory[];
 };
 
-const state: State = {
-  cryptoCoins: [],
-  currencyInformation: [],
-  marketCapHistory: [],
-};
-
-const mutations = {
-  addCryptoCoin(state: State, cryptoCoin: CryptoCoin) {
-    console.log("add crypto to store");
-    state.cryptoCoins.push(cryptoCoin);
-    // localStorage.setItem("cryptoCoins", JSON.stringify(state));
-  },
-  addCurrencyInformation(
-    state: State,
-    currencyInformation: CurrencyInformation[]
-  ) {
-    console.log("add currency info");
-    state.currencyInformation.push(...currencyInformation);
-  },
-  addMarketCapHistory(state: State, marketCapHistory: MarketCapHistory[]) {
-    console.log("add marketcap history");
-    state.marketCapHistory.push(...marketCapHistory);
-  },
-};
-
 export default createStore({
-  state,
-  mutations,
+  modules: {
+    currencyInfo: currencyInfoModule,
+    holdings: holdingsModule,
+  },
+  state() {
+    return {
+      // TODO: to be removed if auth is introduced
+      apiKey: "7f4ff5196402dc00723ba37573b376e5dd79b821",
+    };
+  },
+  getters: {
+    apiKey(state: any) {
+      return state.apiKey;
+    },
+  },
 });

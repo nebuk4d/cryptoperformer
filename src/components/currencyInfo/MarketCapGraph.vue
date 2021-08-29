@@ -6,25 +6,34 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed } from "vue";
-import { getMarketCapHistory } from "../services/CurrencyService";
 import { useStore } from "vuex";
 
 export default defineComponent({
   name: "MarketCapGraph",
-  mounted() {
-    const store = useStore();
-    getMarketCapHistory(new Date(2021, 4, 24), new Date())
-      .then((currencyInformation) => {
-        console.log(currencyInformation);
-        store.commit("addCurrencyInformation", currencyInformation);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  },
   setup() {
     const store = useStore();
-    const market_cap = computed(() => store.state.currencyInformation);
+
+    const isLoading = ref(false);
+    const error = ref(null);
+
+    loadMarketCapHistory(new Date(2021, 4, 24), new Date());
+    const marketCapHistory = computed(() => {
+      return store.getters["currencyInfo/marketCapHistory"];
+    });
+
+    async function loadMarketCapHistory(start: Date, end: Date) {
+      isLoading.value = true;
+      try {
+        await store.dispatch("currencyInfo/fetchMarketCapHistory", {
+          start: start,
+          end: end,
+        });
+      } catch (_error) {
+        error.value =
+          _error.message || "There was an error loading the marketcap";
+      }
+      isLoading.value = false;
+    }
 
     const chartData = ref({
       labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -40,7 +49,8 @@ export default defineComponent({
 
     return {
       chartData,
-      market_cap,
+      marketCapHistory,
+      loadMarketCapHistory,
     };
   },
 });

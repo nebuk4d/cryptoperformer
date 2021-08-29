@@ -1,6 +1,6 @@
 <template>
   <div class="coinlist p-p-auto p-m-6">
-    <DataTable :value="coins">
+    <DataTable :value="currencies">
       <template #empty>
         <ProgressSpinner />
       </template>
@@ -27,30 +27,22 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
+import { defineComponent, computed, ref } from "vue";
 import { useStore } from "vuex";
-import * as CurrencyService from "../services/CurrencyService";
 
 export default defineComponent({
   name: "CoinList",
-  props: {
-    msg: String,
-  },
-  mounted() {
-    const store = useStore();
-    CurrencyService.getCurrencyInformation()
-      .then((currencyInformation) => {
-        console.log(currencyInformation);
-        store.commit("addCurrencyInformation", currencyInformation);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  },
   setup() {
     const store = useStore();
-    //const coins = computed(() => store.state.cryptoCoins);
-    const coins = computed(() => store.state.currencyInformation);
+
+    const isLoading = ref(false);
+    const error = ref(null);
+
+    loadCurrencies();
+
+    const currencies = computed(() => {
+      return store.getters["currencyInfo/currencyInformation"];
+    });
 
     const formatCurrency = new Intl.NumberFormat("en-US", {
       style: "currency",
@@ -58,9 +50,21 @@ export default defineComponent({
       maximumSignificantDigits: 3,
     });
 
+    async function loadCurrencies() {
+      isLoading.value = true;
+      try {
+        await store.dispatch("currencyInfo/fetchCurrencyInformation");
+      } catch (_error) {
+        error.value =
+          _error.message || "There was an error loading the currencies";
+      }
+      isLoading.value = false;
+    }
+
     return {
-      coins,
+      currencies,
       formatCurrency,
+      loadCurrencies,
     };
   },
 });
@@ -71,7 +75,7 @@ export default defineComponent({
 .coinlist {
   display: table;
 }
-.coin {
+.currencies {
   display: table;
   table-layout: fixed;
   width: 100%;

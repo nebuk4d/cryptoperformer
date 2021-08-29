@@ -14,20 +14,12 @@
       @click="addNewCryptoCoin"
     />
   </div>
-  <Button
-    icon="pi pi-search"
-    iconPos="right"
-    class="p-button"
-    label="Get Crypto Currencies"
-    @click="updateCurrencyInformation"
-  />
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { useStore } from "vuex";
-import { CryptoCoin } from "../store/index";
-import { getCurrencyInformation } from "../services/CurrencyService";
+import { CoinHolding } from "../../types/CoinHolding";
 
 export default defineComponent({
   name: "NewCoinModal",
@@ -42,7 +34,7 @@ export default defineComponent({
 
     function addNewCryptoCoin() {
       console.log("Add new crypto");
-      const cryptoCoin: CryptoCoin = {
+      const cryptoCoin: CoinHolding = {
         id: Date.now(),
         name: coinName.value,
         symbol: coinSymbol.value,
@@ -51,24 +43,11 @@ export default defineComponent({
       store.commit("addCryptoCoin", cryptoCoin);
     }
 
-    function updateCurrencyInformation() {
-      console.log("updateCurrencyInfo button was pressed");
-      getCurrencyInformation()
-        .then((currencyInformation) => {
-          console.log(currencyInformation);
-          store.commit("addCurrencyInformation", currencyInformation);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-
     return {
       coinName,
       coinSymbol,
       coinAmount,
       addNewCryptoCoin,
-      updateCurrencyInformation,
     };
   },
 });

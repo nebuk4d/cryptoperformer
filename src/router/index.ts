@@ -1,9 +1,13 @@
 import { createRouter, createWebHistory } from "vue-router";
-import CoinInfo from "../views/CoinInfo.vue";
-import Portfolio from "../views/Portfolio.vue";
-import NotFound from "../views/NotFound.vue";
+import CoinInfo from "../pages/CoinInfo.vue";
+import Portfolio from "../pages/Portfolio.vue";
+import NotFound from "../pages/NotFound.vue";
 
 const routes = [
+  {
+    path: "/",
+    redirect: "/coin-info",
+  },
   {
     path: "/coin-info",
     alias: "/",

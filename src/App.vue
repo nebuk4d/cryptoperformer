@@ -1,11 +1,11 @@
 <template>
-  <Header></Header>
+  <the-header></the-header>
   <router-view />
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Header from "./components/Header.vue";
+import TheHeader from "./components/layout/TheHeader.vue";
 
 import "primevue/resources/themes/vela-blue/theme.css"; //theme
 import "primevue/resources/primevue.min.css"; //core css
@@ -14,12 +14,12 @@ import "primeflex/primeflex.css"; //primeflex
 
 export default defineComponent({
   name: "App",
-  components: { Header },
+  components: { TheHeader },
   setup() {},
 });
 </script>
 
-<style lang="css">
+<style>
 :root {
   background-color: var(--surface-a);
   color: var(--text-color);
