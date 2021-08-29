@@ -1,11 +1,11 @@
 <template>
   <header>
     <nav>
-      <!-- <h1><router-link to="/">CryptoPerformer</router-link></h1> -->
+      <div class="appName">
+        <img alt="Vue logo" src="../../assets/logo.png" />
+        <h1><router-link to="/">CryptoPerformer</router-link></h1>
+      </div>
       <ul>
-        <li>
-          <img alt="Vue logo" src="../../assets/logo.png" />
-        </li>
         <li>
           <router-link to="/coin-info">CoinInfo</router-link>
         </li>
@@ -27,15 +27,57 @@ export default defineComponent({
 </script>
 
 <style scoped>
-header {
-  width: 100%;
-  height: 5rem;
-  background-color: rgb(44, 44, 83);
-  border: 5px solid rgb(37, 50, 61);
+.appName {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 1rem;
 }
 
-nav {
-  height: 100%;
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid gray;
+}
+
+header a {
+  text-decoration: none;
+  color: #ffffff;
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid transparent;
+}
+
+header nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  margin: 0 0.5rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:active,
+a:hover,
+a.router-link-active {
+  border: 1px solid #5a8fb3;
+  color: goldenrod;
 }
 
 h1 {
@@ -47,40 +89,14 @@ h1 a {
   margin: 0;
 }
 
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-li {
-  margin: 0 2rem;
-}
-
-a {
-  text-decoration: none;
-  background: transparent;
-  border: 1px solid transparent;
-  cursor: pointer;
-  color: white;
-  padding: 0.5rem 1.5rem;
-  display: inline-block;
-}
-
-a:hover,
-a:active,
-a.active {
-  color: #f1a80a;
-  border-color: #f1a80a;
-  background-color: #1a037e;
+h1 a:hover,
+h1 a:active,
+h1 a.router-link-active {
+  border-color: transparent;
 }
 
 img {
-  max-width: 30%;
-  max-height: 30%;
+  width: 5%;
+  height: 5%;
 }
 </style>

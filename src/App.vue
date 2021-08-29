@@ -11,11 +11,6 @@
 import { defineComponent } from "vue";
 import TheHeader from "./components/layout/TheHeader.vue";
 
-import "primevue/resources/themes/vela-blue/theme.css"; //theme
-import "primevue/resources/primevue.min.css"; //core css
-import "primeicons/primeicons.css"; //icons
-import "primeflex/primeflex.css"; //primeflex
-
 export default defineComponent({
   name: "App",
   components: { TheHeader },
@@ -25,15 +20,13 @@ export default defineComponent({
 
 <style>
 :root {
-  background-color: var(--surface-a);
-  color: var(--text-color);
+  background-color: rgb(62, 80, 104);
+  color: white;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  margin-top: 60px;
 }
 
 .route-enter-from {

@@ -1,18 +1,12 @@
 <template>
   <div class="newcoinmodal">
     <label>Coin Name</label>
-    <InputText v-model="coinName" name="coinName" type="text" />
+    <input v-model="coinName" name="coinName" type="text" />
     <label>Coin Symbol</label>
-    <InputText v-model="coinSymbol" name="coinSymbol" type="text" />
+    <input v-model="coinSymbol" name="coinSymbol" type="text" />
     <label>Coin Amount</label>
-    <InputText v-model="coinAmount" name="coinAmount" type="number" />
-    <Button
-      icon="pi pi-check"
-      iconPos="right"
-      class="p-button"
-      label="Add New Crypto Coin"
-      @click="addNewCryptoCoin"
-    />
+    <input v-model="coinAmount" name="coinAmount" type="number" />
+    <button label="Add New Crypto Coin" @click="addNewCryptoCoin" />
   </div>
 </template>
 
@@ -23,9 +17,6 @@ import { CoinHolding } from "../../types/CoinHolding";
 
 export default defineComponent({
   name: "NewCoinModal",
-  props: {
-    msg: String,
-  },
   setup() {
     const store = useStore();
     const coinName = ref<string>("");
