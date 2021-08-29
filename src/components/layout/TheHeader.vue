@@ -29,15 +29,12 @@ export default defineComponent({
 <style scoped>
 .appName {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
-  margin-left: 1rem;
+  margin-left: 0;
 }
 
 header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border: 1px solid gray;
 }
 
@@ -51,18 +48,20 @@ header a {
 
 header nav {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  align-items: center; 
+  width: 100%;
 }
 
 header ul {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  margin: auto 0 auto auto;
 }
 
 ul {
   list-style: none;
+  justify-content: right;
 }
 
 li {
@@ -96,7 +95,8 @@ h1 a.router-link-active {
 }
 
 img {
-  width: 5%;
-  height: 5%;
+  width: 10%;
+  height: 10%;
+  margin-left: 5px;
 }
 </style>
