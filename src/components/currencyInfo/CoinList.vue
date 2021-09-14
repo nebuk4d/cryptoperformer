@@ -37,6 +37,7 @@
     </table>
     <div class="pagination-bar">
       <button>Prev page</button>
+      <h3 class="current-page">1</h3>
       <button>Next page</button>
     </div>
   </div>
@@ -104,5 +105,9 @@ th {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.current-page {
+  padding: 0 5px 0 5px;
 }
 </style>
