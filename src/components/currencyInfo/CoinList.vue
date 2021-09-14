@@ -1,39 +1,45 @@
 <template>
-  <table class="coinlist">
-    <thead>
-      <th>Rank</th>
-      <th>Logo</th>
-      <th>Name</th>
-      <th>Symbol</th>
-      <th>Price</th>
-      <th>24h %</th>
-      <th>7d %</th>
-      <th>Marketcap</th>
-      <th>Volume 24h</th>
-      <th>Circulating Supply</th>
-      <th>Last 7 days</th>
-    </thead>
-    <tbody>
-      <tr v-for="currency in currencies" :key="currency.id">
-        <td>{{ currency.rank }}</td>
-        <td><img :src="currency.logo_url" width="24" height="24" /></td>
-        <td>{{ currency.name }}</td>
-        <td>{{ currency.symbol }}</td>
-        <td>{{ formatCurrency.format(currency.price) }}</td>
-        <td>{{ currency["1d"].price_change_pct }}</td>
-        <td>{{ currency["7d"].price_change_pct }}</td>
-        <td>{{ formatCurrency.format(currency.market_cap) }}</td>
-        <td>{{ currency["7d"].volume }}</td>
-        <td>{{ currency.circulating_supply }}</td>
-        <td>
-          <!-- for now only use this static sparkline as placeholder - to be generated later -->
-          <img
-            src="https://nomics.com/images/sparkline/assets/BTC-USD-1d.svg"
-          />
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div>
+    <table class="coinlist">
+      <thead>
+        <th>Rank</th>
+        <th>Logo</th>
+        <th>Name</th>
+        <th>Symbol</th>
+        <th>Price</th>
+        <th>24h %</th>
+        <th>7d %</th>
+        <th>Marketcap</th>
+        <th>Volume 24h</th>
+        <th>Circulating Supply</th>
+        <th>Last 7 days</th>
+      </thead>
+      <tbody>
+        <tr v-for="currency in currencies" :key="currency.id">
+          <td>{{ currency.rank }}</td>
+          <td><img :src="currency.logo_url" width="24" height="24" /></td>
+          <td>{{ currency.name }}</td>
+          <td>{{ currency.symbol }}</td>
+          <td>{{ formatCurrency.format(currency.price) }}</td>
+          <td>{{ currency["1d"].price_change_pct }}</td>
+          <td>{{ currency["7d"].price_change_pct }}</td>
+          <td>{{ formatCurrency.format(currency.market_cap) }}</td>
+          <td>{{ currency["7d"].volume }}</td>
+          <td>{{ currency.circulating_supply }}</td>
+          <td>
+            <!-- for now only use this static sparkline as placeholder - to be generated later -->
+            <img
+              :src="`https://nomics.com/images/sparkline/assets/${currency.symbol}-USD-1d.svg`"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pagination-bar">
+      <button>Prev page</button>
+      <button>Next page</button>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -92,5 +98,11 @@ th {
 }
 .img {
   vertical-align: middle;
+}
+
+.pagination-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
