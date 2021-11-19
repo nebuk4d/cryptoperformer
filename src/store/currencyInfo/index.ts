@@ -7,6 +7,7 @@ export default {
   state() {
     return {
       currencyInformation: [],
+      currencyInformation_totalItems: 0,
       marketCapHistory: [],
     };
   },

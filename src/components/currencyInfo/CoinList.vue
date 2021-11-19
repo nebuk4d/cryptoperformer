@@ -70,7 +70,10 @@ export default defineComponent({
     async function loadCurrencies() {
       isLoading.value = true;
       try {
-        await store.dispatch("currencyInfo/fetchCurrencyInformation");
+        await store.dispatch("currencyInfo/fetchCurrencyInformation", {
+          per_pages: 100,
+          page: 1,
+        });
       } catch (_error) {
         error.value =
           _error.message || "There was an error loading the currencies";

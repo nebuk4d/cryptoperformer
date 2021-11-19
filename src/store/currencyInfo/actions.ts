@@ -2,10 +2,13 @@ import { CurrencyInformation } from "@/types/CurrencyInformation";
 import { MarketCapHistory } from "@/types/MarketCapHistory";
 
 export default {
-  async fetchCurrencyInformation(context: any, payload: any) {
+  async fetchCurrencyInformation(
+    context: any,
+    payload: { per_pages: number; page: number }
+  ) {
     const apiKey = context.rootGetters.apiKey;
     const response = await fetch(
-      `https://api.nomics.com/v1/currencies/ticker?key=${apiKey}&interval=1d,7d,30d&convert=USD&per-page=100&page=1`
+      `https://api.nomics.com/v1/currencies/ticker?key=${apiKey}&interval=1d,7d,30d&convert=USD&per-page=${payload.per_pages}&page=${payload.page}`
     );
 
     const responseData = await response.json();
@@ -18,6 +21,17 @@ export default {
       throw error;
     }
 
+    console.log(
+      response.headers.forEach((header) => {
+        console.log(header);
+      })
+    );
+    console.log(response.headers.get("X-Pagination-Total-Items"));
+
+    context.commit(
+      "setCurrencyInformationTotalItems",
+      response.headers.get("X-Pagination-Total-Items")
+    );
     context.commit("addCurrencyInformation", responseData);
   },
   async fetchCurrencySparkline(
